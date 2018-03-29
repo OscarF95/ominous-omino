@@ -1,11 +1,7 @@
 package main
 
 import (
-	//"flag"
 	"fmt"
-	"bufio"
-	"os"
-	"strconv"
 )
 
 func main(){
@@ -13,38 +9,42 @@ func main(){
 }
 
 func OminoTest(){
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Tests")
-	tests, _ := reader.ReadString('\n')
-	// flag.Parse()
-	// tests1 := flag.Arg(0)
-	number, _ := strconv.ParseInt(tests, 10, 8)
-	
-	i := 0
+	fmt.Println("Tests:")
+	var number int
+	_, err := fmt.Scanf("%d", &number)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-	fmt.Println(number)
-	for i = 0; i < number; i++{
+	for i := 0; i < number; i++{
 		test(i+1)
 	}
 }
 
 func test(numberOfCases int){
 
-	fmt.Println("debugging")
-	reader2 := bufio.NewReader(os.Stdin)
 	fmt.Println("Enter X value:")
-	xValue, _ := reader2.ReadString('\n')
-	X, _ := strconv.ParseInt(xValue, 10, 8)
+	var X int
+	_, err := fmt.Scanf("%d", &X)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-	reader3 := bufio.NewReader(os.Stdin)
+	
+
 	fmt.Println("Enter number of rows:")
-	rValue, _ := reader3.ReadString('\n')
-	R, _ := strconv.ParseInt(rValue, 10, 8)
+	var R int
+	_, err2 := fmt.Scanf("%d", &R)
+	if err2 != nil {
+		fmt.Println(err)
+	}
 
-	reader4 := bufio.NewReader(os.Stdin)
 	fmt.Println("Enter number of columns:")
-	cValue, _ := reader4.ReadString('\n')
-	C, _ := strconv.ParseInt(cValue, 10, 8)
+	var C int
+	_, err3 := fmt.Scanf("%d", &C)
+	if err3 != nil {
+		fmt.Println(err)
+	}
 
 	OminoGame(X, R, C, numberOfCases)
 }
@@ -61,23 +61,23 @@ func OminoGame(X int, R int, C int, numberOfCases int){
 		fourthIndicator = (X / 2) + 1
 	}
 
-	winner := "Richard"
+	winner := "RICHARD"
 
 	if X < firstIndicator {
 		if secondIndicator == 0 {
 			if R >= thirdIndicator || C >= thirdIndicator {
 				if R >= thirdIndicator {
 					if C >= fourthIndicator {
-						winner = "Gabriel"
+						winner = "GABRIEL"
 					}
 				}
 				if C >= thirdIndicator {
 					if R >= fourthIndicator {
-						winner = "Gabriel"
+						winner = "GABRIEL"
 					}
 				}
 			}
 		}
 	}
-	fmt.Println(winner)
+	fmt.Println("Case #", numberOfCases, ": ", winner)
 }
